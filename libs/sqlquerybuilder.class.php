@@ -5,11 +5,11 @@
  * File Created: Tuesday, 19th December 2017 3:20:01 pm
  * @author ramon1611
  * -----
- * Last Modified: Monday, 15th January 2018 2:50:01 pm
+ * Last Modified: Monday, 15th January 2018 4:16:07 pm
  * Modified By: ramon1611
  */
 
-namespace ramon1611;
+namespace ramon1611\Libs;
 
 /**
  * Class SQLQueryBuilder

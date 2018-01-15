@@ -13,7 +13,7 @@
 	],
 	
 	"autoloader": {
-		"psr-4": { "ramon1611\\": "src/" }
+		"psr-4": { "ramon1611\Libs\\": "libs/" }
 	},
     
 	"require": {}

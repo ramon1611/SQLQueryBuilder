@@ -1,0 +1,16 @@
+{
+    "name": "ramon1611/sqlquerybuilder",
+    "description": "Build SQL Querys",
+    "type": "library",
+    "license": "CC-BY-SA-4.0",
+	
+	"authors": [
+		{
+			"name":	"Ramon Rosin (ramon1611)",
+			"email": "rosin.ramon@gmail.com",
+			"role": "Developer"
+		}
+	],
+    
+	"require": {}
+}

@@ -11,6 +11,10 @@
 			"role": "Developer"
 		}
 	],
+	
+	"autoloader": {
+		"psr-4": { "ramon1611\\": "src/" }
+	},
     
 	"require": {}
 }

@@ -3,6 +3,7 @@
     "description": "Build SQL Querys",
     "type": "library",
     "license": "CC-BY-SA-4.0",
+	"version": "1.0.0-beta",
 	
 	"authors": [
 		{

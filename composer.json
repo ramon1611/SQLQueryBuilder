@@ -14,7 +14,9 @@
 	],
 	
 	"autoloader": {
-		"psr-4": { "ramon1611\\Libs\\": "libs/" }
+		"classmap": [
+			"libs/sqlquerybuilder.class.php"
+		]
 	},
     
 	"require": {}

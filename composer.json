@@ -12,10 +12,10 @@
 		}
 	],
 	
-	"autoloader": {
-		"classmap": [
-			"libs/sqlquerybuilder.class.php"
-		]
+	"autoload": {
+		"psr-4": {
+			"ramon1611\\Libs\\": "libs/"
+		}
 	},
     
 	"require": {}

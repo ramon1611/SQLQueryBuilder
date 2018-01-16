@@ -9,6 +9,8 @@
  * Modified By: ramon1611
  */
 
+namespace ramon1611\Libs
+
 /**
  * Class SQLQueryBuilder
  * 

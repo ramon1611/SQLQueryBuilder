@@ -3,6 +3,7 @@
     "description": "Build SQL Querys",
     "type": "library",
     "license": "CC-BY-SA-4.0",
+	"homepage": "https://github.com/ramon1611/SQLQueryBuilder",
 	
 	"authors": [
 		{

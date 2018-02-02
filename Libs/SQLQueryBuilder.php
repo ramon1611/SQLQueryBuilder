@@ -5,10 +5,13 @@
  * File Created: Tuesday, 19th December 2017 3:20:01 pm
  * @author ramon1611
  * -----
- * Last Modified: Monday, 15th January 2018 4:16:07 pm
+ * Last Modified: Friday, 2nd February 2018 10:40:37 am
  * Modified By: ramon1611
  */
 
+/**
+ * Namespace ramon1611\Libs
+ */
 namespace ramon1611\Libs;
 
 /**
@@ -18,27 +21,30 @@ namespace ramon1611\Libs;
  * @package SQLQueryBuilder
  */
 class SQLQueryBuilder {
-    const SELECT_ALL_COLUMNS = array( '*' );
+    /**
+     * @var array Constat for selecting all columns of a table
+     */
+    const SELECT_ALL_COLUMNS = ['*'];
 
     /**
-     * __construct
+     * Constructor
      *
      * @param void 
      * @return void
      */
-    public function __construct( ) {}
+    public function __construct() {}
     
     
     /**
-     * SQLQuery::Select
+     * Generates a select statement
      *
-     * @param string $table
-     * @param array $columns
-     * @param bool $end = true
-     * @param bool $distinct = false
-     * @return mixed
+     * @param string $table The table to select
+     * @param array $columns The columns to select. Default is SQLQueryBuilder::SELECT_ALL_COLUMNS
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @param bool $distinct Determines if the DISTINCT statement is used. Default is FALSE
+     * @return mixed Returns the generated statement or FALSE on error
      */
-    public function Select( string $table, array $columns, bool $end = true, bool $distinct = false ) {
+    public function Select( string $table, array $columns = self::SELECT_ALL_COLUMNS, bool $end = true, bool $distinct = false ) {
         if ( isset( $table, $columns, $end, $distinct ) ) {
             $lastCol = array_pop( $columns );
             $cols = NULL;
@@ -54,11 +60,11 @@ class SQLQueryBuilder {
     }
 
     /**
-     * SQLQuery::Where
+     * Generates a where statement
      *
-     * @param string $condition
-     * @param bool $end = true
-     * @return mixed
+     * @param string $condition The condition string of the WHERE statement
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @return mixed Returns the generated statement or FALSE on error
      */
     public function Where( string $condition, bool $end = true ) {
         if ( isset( $condition, $end ) ) {
@@ -69,12 +75,12 @@ class SQLQueryBuilder {
     }
 
     /**
-     * SQLQuery::Order
+     * Generates a order statement
      *
-     * @param array $columns
-     * @param string $order = 'ASC'
-     * @param bool $end = true
-     * @return mixed
+     * @param array $columns Columns to sort by
+     * @param string $order Determines in which order the results are sorted. Default is 'ASC'
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @return mixed Returns the generated statement or FALSE on error
      */
     public function Order( array $columns, string $order = 'ASC', bool $end = true ) {
         if ( isset( $columns, $order, $end ) ) {
@@ -92,13 +98,13 @@ class SQLQueryBuilder {
     }
 
     /**
-     * SQLQuery::Insert
+     * Generates a insert statement
      *
-     * @param string $table
-     * @param array $columns
-     * @param array $values
-     * @param bool $end = true
-     * @return mixed
+     * @param string $table Table to insert
+     * @param array $columns Columns into which the values are inserted
+     * @param array $values Values to be inserted
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @return mixed Returns the generated statement or FALSE on error
      */
     public function Insert( string $table, array $columns, array $values, bool $end = true ) {
         if ( isset( $table, $columns, $values, $end ) ) {
@@ -122,16 +128,16 @@ class SQLQueryBuilder {
     }
 
     /**
-     * SQLQuery::Update
+     * Generates a update statement
      *
-     * @param string $table
-     * @param array $valuePairs
-     * @param string $condition
-     * @param bool $end = true
-     * @return mixed
+     * @param string $table Table to update
+     * @param array $valuePairs An array with pairs of columns and values
+     * @param string $condition The condition string. If empty, all entries are updated
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @return mixed Returns the generated statement or FALSE on error
      */
     public function Update( string $table, array $valuePairs, string $condition, bool $end = true ) {
-        if ( isset( $table, $valuePairs, $condition, $end ) ) {
+        if ( isset( $table, $valuePairs, $end ) ) {
             $lastPair = $this->array_pop_assoc( $valuePairs );
             $valPairs = NULL;
 
@@ -139,19 +145,19 @@ class SQLQueryBuilder {
                 $valPairs .= $column.'=\''.$value.'\', ';
             $valPairs .= key($lastPair).'=\''.current($lastPair).'\' ';
 
-            $query = 'UPDATE '.$table.' SET '.$valPairs.$this->where( $condition, $end );
+            $query = 'UPDATE '.$table.' SET '.$valPairs.( !empty( $condition ) ) ? $this->where( $condition, $end ) : ( $end ) ? ';' : '';
             return $query;
         } else
             return false;
     }
 
     /**
-     * SQLQuery::Delete
+     * Generates a delete statement
      *
-     * @param string $table
-     * @param string $condition
-     * @param bool $end = true
-     * @return mixed
+     * @param string $table Table to delete entries
+     * @param string $condition The condition string
+     * @param bool $end Determines if the statement is terminated. Default value is TRUE
+     * @return mixed Returns the generated statement or FALSE on error
      */
     public function Delete( string $table, string $condition, bool $end = true ) {
         if ( isset( $table, $condition, $end ) ) {
@@ -163,19 +169,18 @@ class SQLQueryBuilder {
 
 
     /**
-     * SQLQuery::array_pop_assoc
+     * Removes the last element of an associative array
      * 
      * @internal
-     * 
-     * @param array &$arr
-     * @return mixed
+     * @param array &$arr: The associative array to get the value from
+     * @return mixed Returns the removed element as [ $key => $value ]
      */
     private function array_pop_assoc( array &$arr ): array {
         $value = end($arr);
         $key = key($arr);
         unset($arr[$key]);
 
-        return array( $key => $value );
+        return [ $key => $value ];
     }
 }
 ?>

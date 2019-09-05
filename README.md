@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [SQLQueryBuilder](#sqlquerybuilder)
+    * Functions
     * [__construct](#__construct)
     * [Select](#select)
     * [Where](#where)
@@ -10,6 +11,16 @@
     * [Insert](#insert)
     * [Update](#update)
     * [Delete](#delete)
+
+## Funktions
+   * Select
+   * Where
+   * Order
+   * Insert
+   * Update
+   * Delete
+### ToDo:
+   * Joins
 
 ## SQLQueryBuilder
 
